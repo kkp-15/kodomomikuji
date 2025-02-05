@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>こどもおみくじ</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #ffebcd;
+            padding: 50px;
+        }
+        h1 {
+            color: #ff4500;
+        }
+        .box {
+            padding: 20px;
+            border: 3px solid #ff4500;
+            border-radius: 10px;
+            background-color: #fffacd;
+            display: inline-block;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff1493;
+        }
+        .result {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #ff4500;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🎉 こども おみくじ 🎉</h1>
+    <div class="box">
+        <p id="result">おみくじをひいてみよう！</p>
+        <button onclick="drawOmikuji()">おみくじをひく！</button>
+    </div>
+
+    <script>
+        // おみくじを引く関数
+        function drawOmikuji() {
+            // 結果のバリエーション
+            const results = [
+                "🌟 大大吉！ きょうは すごく いいことが あるよ！",
+                "😊 大吉！ えがおで すごすと もっと いいことが あるよ！",
+                "🎈 中吉！ あたらしい ことに ちょうせん してみよう！",
+                "🌸 小吉！ おともだちと なかよく すると いいことが あるよ！",
+                "🍀 吉！ たのしい いちにちに しよう！",
+                "😺 末吉！ ねこさんが きみに しあわせを とどけるよ！",
+                "🎵 凶！？ でも だいじょうぶ！ すきな うたを うたおう！",
+                "✨ 超大吉！！ きょうは さいこうの いちにち！",
+                "🌟 すごい運がある！ 今日一日を楽しもう！",
+                "💪 元気な一日！がんばって挑戦しよう！",
+                "🎉 ラッキーな日！友達と楽しんでね！",
+                "💫 今日も素敵なことが待ってるよ！",
+                "🥳 楽しい一日になりそうだね！",
+                "🌻 今日はリラックスして楽しんで！",
+                "🔮 大凶！ あせらず、じっくり考えよう！",
+                "☁️ 中凶！ 今日は少し気をつけて過ごそう！",
+                "💥 小凶！ 慎重に行動して、ゆっくり進もう！",
+                "🌀 凶！ あまり無理せず休むといいよ！",
+                "⚡️ 大凶！？ でも気をつければ大丈夫だよ！"
+            ];
+
+            // 大吉や大凶は低確率で出力されるように設定
+            const randomChance = Math.random();
+            
+            let selectedResult;
+            if (randomChance < 0.02) { // 2%の確率で大大吉
+                selectedResult = "🌟 大大吉！ きょうは すごく いいことが あるよ！";
+            } else if (randomChance < 0.05) { // 3%の確率で大吉
+                selectedResult = "😊 大吉！ えがおで すごすと もっと いいことが あるよ！";
+            } else if (randomChance < 0.1) { // 5%の確率で超大吉
+                selectedResult = "✨ 超大吉！！ きょうは さいこうの いちにち！";
+            } else if (randomChance < 0.2) { // 10%の確率で大凶
+                selectedResult = "⚡️ 大凶！？ でも気をつければ大丈夫だよ！";
+            } else if (randomChance < 0.3) { // 10%の確率で中凶
+                selectedResult = "☁️ 中凶！ 今日は少し気をつけて過ごそう！";
+            } else if (randomChance < 0.4) { // 10%の確率で小凶
+                selectedResult = "💥 小凶！ 慎重に行動して、ゆっくり進もう！";
+            } else {
+                // 他の結果は通常の確率
+                const randomIndex = Math.floor(Math.random() * results.length);
+                selectedResult = results[randomIndex];
+            }
+
+            // 結果を表示
+            document.getElementById("result").textContent = selectedResult;
+        }
+    </script>
+
+</body>
+</html>
