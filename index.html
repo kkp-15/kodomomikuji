@@ -13,25 +13,22 @@
         }
         h1 {
             color: #ff4500;
-            font-size: 2.5rem;
         }
         .box {
-            padding: 30px;
-            border: 4px solid #ff4500;
-            border-radius: 15px;
+            padding: 20px;
+            border: 3px solid #ff4500;
+            border-radius: 10px;
             background-color: #fffacd;
             display: inline-block;
-            margin-top: 30px;
         }
         button {
-            padding: 12px 30px;
-            font-size: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
             background-color: #ff69b4;
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 5px;
             cursor: pointer;
-            margin-top: 20px;
         }
         button:hover {
             background-color: #ff1493;
@@ -41,14 +38,6 @@
             font-weight: bold;
             margin-top: 20px;
             color: #ff4500;
-            animation: fadeIn 1s ease-in;
-        }
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-        .emoji {
-            font-size: 3rem;
         }
     </style>
 </head>
@@ -62,60 +51,37 @@
 
     <script>
         function drawOmikuji() {
-            // 結果のバリエーション
             const results = [
-                { fortune: "超大吉", message: "🌟 今日は本当に最高の日！素晴らしいことがいっぱい起こるよ！最高の冒険が待ってるかもね！", emoji: "🎉" },
-                { fortune: "大吉", message: "😊 いいことがどんどんやってくる！友達とも楽しい時間を過ごしてね！今日は運命の大チャンスかも！", emoji: "🌈" },
-                { fortune: "中吉", message: "🎈 あたらしい冒険にチャレンジ！君ならできるよ！恐れずに前に進もう！", emoji: "🦄" },
-                { fortune: "小吉", message: "🌸 今日も楽しい日になるよ！小さな幸せを大事にしよう！友達と笑顔で過ごしてね！", emoji: "🌻" },
-                { fortune: "吉", message: "🍀 ちょっとしたことで、運がアップ！みんなで遊びに行こう！今日はラッキーアイテムを探してみよう！", emoji: "🍉" },
-                { fortune: "末吉", message: "😺 今日はリラックスして過ごして、ちょっとお昼寝しよう！元気を充電して、明日からもっと楽しいことが待ってるよ！", emoji: "🌙" },
-                { fortune: "凶", message: "⚡️ あわてず、焦らず。少し休んでから再チャレンジ！困ったときは深呼吸してみよう！", emoji: "🌧️" },
-                { fortune: "大凶", message: "🔮 今日は気をつけて過ごそう！でも大丈夫、明日はきっと良くなるよ！夜はお星さまに願いごとをしてみてね！", emoji: "🌪️" },
-                { fortune: "超中吉", message: "🎁 今日は何か素敵なプレゼントが待っている予感！笑顔で過ごせばいいことがあるよ！", emoji: "🎁" },
-                { fortune: "にゃん吉", message: "🐾 ねこさんが一緒に遊んでくれる日！お昼寝もお楽しみ！", emoji: "😸" },
-                { fortune: "わくわく吉", message: "🎉 今日はわくわくすることがたくさん！新しい発見が待ってるよ！", emoji: "✨" },
-                { fortune: "しあわせ吉", message: "💖 今日はしあわせがいっぱい！みんなにありがとうと言おうね！", emoji: "🌸" },
-                { fortune: "おもちゃ吉", message: "🎁 おもちゃでいっぱい遊べる日！お気に入りのおもちゃを持って遊びに行こう！", emoji: "🧸" },
-                { fortune: "ふわふわ吉", message: "🦋 ふわふわ気分で、風に乗ってどこか素敵な場所に行けそう！", emoji: "🦋" },
-                { fortune: "ほっこり吉", message: "🌾 今日はあたたかい飲み物を飲んで、ゆっくり過ごそう。心がほっこりするよ！", emoji: "🍵" },
-                { fortune: "おひさま吉", message: "🌞 太陽の光をたっぷり浴びて、元気いっぱい過ごそう！たくさん遊んで、楽しいことが待ってるよ！", emoji: "🌻" },
-                { fortune: "きらきら吉", message: "✨ 今日はすごくキラキラした気分！心の中も外も輝いているよ！", emoji: "🌟" },
-                { fortune: "わらい吉", message: "🤣 今日は大爆笑して、楽しい一日になるよ！おもしろいことを見つけて、いっぱい笑おう！", emoji: "😂" },
-                { fortune: "ほし吉", message: "⭐ 夜空に輝く星を見て、素敵なことが起きる予感！夢を見ながら寝よう！", emoji: "🌟" },
-                { fortune: "ぴかぴか吉", message: "🔮 今日は何か新しい発見があるかも！ピカピカに輝く未来が待っているよ！", emoji: "✨" },
-                { fortune: "ひこうき吉", message: "✈️ 今日は大空を飛ぶような気分で、自由に楽しく過ごそう！", emoji: "🌤️" }
+                { text: "✨ 超大吉！！ きょうは さいこうの いちにち！", weight: 1 },
+                { text: "🌟 大大吉！ きょうは すごく いいことが あるよ！", weight: 1 },
+                { text: "💥 大凶！？ でも だいじょうぶ！ きっと いいことも あるよ！", weight: 1 },
+                { text: "😊 大吉！ えがおで すごすと もっと いいことが あるよ！", weight: 5 },
+                { text: "🎈 中吉！ あたらしい ことに ちょうせん してみよう！", weight: 10 },
+                { text: "🌸 小吉！ おともだちと なかよく すると いいことが あるよ！", weight: 10 },
+                { text: "🍀 吉！ たのしい いちにちに しよう！", weight: 10 },
+                { text: "😺 末吉！ ねこさんが きみに しあわせを とどけるよ！", weight: 10 },
+                { text: "🎵 凶！？ でも だいじょうぶ！ すきな うたを うたおう！", weight: 4 },
+                { text: "🌟 ぴかぴか吉！ きらきらの じかんが まっているよ！", weight: 12 },
+                { text: "✈️ ひこうき吉！ すいーと そらを とんでいこう！", weight: 12 },
+                { text: "🍩 ドーナツ吉！ いっしょに みんなで おいしいものを たべよう！", weight: 12 },
+                { text: "🎮 ゲーム吉！ たくさん たのしい ゲームが まってるよ！", weight: 12 },
+                { text: "🌈 なないろ吉！ すてきな ばしょが みつかるよ！", weight: 12 },
+                { text: "🐶 わんわん吉！ あたらしい おともだちが できるかも！", weight: 12 },
+                { text: "🌸 はなび吉！ きれいな はなびが みえるよ！", weight: 12 },
+                { text: "🎤 うた吉！ みんなで うたって たのしもう！", weight: 12 }
             ];
 
-            // 確率を調整して、大吉や大凶を低確率にする
-            const randomChance = Math.random();
-            
-            let selectedResult;
-            if (randomChance < 0.05) { // 5%の確率で超大吉
-                selectedResult = results[0];
-            } else if (randomChance < 0.15) { // 10%の確率で大吉
-                selectedResult = results[1];
-            } else if (randomChance < 0.30) { // 15%の確率で中吉
-                selectedResult = results[2];
-            } else if (randomChance < 0.45) { // 15%の確率で小吉
-                selectedResult = results[3];
-            } else if (randomChance < 0.60) { // 15%の確率で吉
-                selectedResult = results[4];
-            } else if (randomChance < 0.75) { // 15%の確率で末吉
-                selectedResult = results[5];
-            } else if (randomChance < 0.85) { // 10%の確率で凶
-                selectedResult = results[6];
-            } else if (randomChance < 0.95) { // 10%の確率で大凶
-                selectedResult = results[7];
-            } else if (randomChance < 0.98) { // 3%の確率で超中吉
-                selectedResult = results[8];
-            } else { // 2%の確率でにゃん吉
-                selectedResult = results[9];
+            // 確率に応じて結果を選ぶ
+            let totalWeight = results.reduce((sum, item) => sum + item.weight, 0);
+            let randomNum = Math.floor(Math.random() * totalWeight);
+            let sum = 0;
+            for (let i = 0; i < results.length; i++) {
+                sum += results[i].weight;
+                if (randomNum < sum) {
+                    document.getElementById("result").textContent = results[i].text;
+                    break;
+                }
             }
-
-            // 結果を表示
-            const resultText = `${selectedResult.emoji} ${selectedResult.fortune}! ${selectedResult.message}`;
-            document.getElementById("result").textContent = resultText;
         }
     </script>
 
